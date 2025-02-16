@@ -1,0 +1,19 @@
+services:
+  cart-service:
+    image: localhost:5001/cart-service:local
+    build:
+      context: .
+      args:
+        JAR_FILE: cart-service/target/*.jar
+  offer-service:
+    image: localhost:5001/offer-service:local
+    build:
+      context: .
+      args:
+        JAR_FILE: offer-service/target/*.jar
+  delivery-service:
+    image: localhost:5001/delivery-service:local
+    build:
+      context: .
+      args:
+        JAR_FILE: delivery-service/target/*.jar

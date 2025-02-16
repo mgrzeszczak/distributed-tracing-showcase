@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: delivery-service
+
+management:
+  observations:
+    annotations:
+      enabled: true
+  tracing:
+    sampling:
+      probability: 1.0
+  otlp:
+    tracing:
+      endpoint: http://localhost:4318/v1/traces
+
+server:
+  port: 8082
+
+#micrometer:
+#  observations:
+#    annotations:
+#      enabled: true

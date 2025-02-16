@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>io.github.mgrzeszczak</groupId>
+		<artifactId>distributed-tracing-showcase-parent</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+	<artifactId>distributed-tracing-showcase-delivery-service</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>distributed-tracing-showcase-delivery-service</name>
+	<description>Showcase for distributed tracing - delivery service</description>
+	<packaging>jar</packaging>
+
+	<properties>
+		<java.version>21</java.version>
+		<kotlin.version>1.9.25</kotlin.version>
+	</properties>
+
+	<build>
+		<sourceDirectory>${project.basedir}/src/main/kotlin</sourceDirectory>
+		<testSourceDirectory>${project.basedir}/src/test/kotlin</testSourceDirectory>
+	</build>
+
+</project>

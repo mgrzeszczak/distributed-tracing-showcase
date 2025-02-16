@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: cart-service
+
+management:
+  observations:
+    annotations:
+      enabled: true
+  tracing:
+    sampling:
+      probability: 1.0
+  otlp:
+    tracing:
+      endpoint: http://localhost:4318/v1/traces
+
+client:
+  offer-service:
+    url: 'http://localhost:8081'
+  delivery-service:
+    url: 'http://localhost:8082'
+
+#micrometer:
+#  observations:
+#    annotations:
+#      enabled: true
