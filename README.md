@@ -5,6 +5,7 @@ Showcase project for distributed tracing using jaeger, elasticsearch, k8s.
 - use opentelemetry operator for jaeger 2 - https://github.com/jaegertracing/jaeger-operator#jager-v2-operator
 - setup ingress for services and jaeger GUI
 - setup installation without java (using docker builder)
+- secure jaeger GUI using reverse proxy (for instance oauth2-proxy) with keycloak?
 
 ## Requirements
 - docker
