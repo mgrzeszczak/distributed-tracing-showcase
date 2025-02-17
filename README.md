@@ -6,6 +6,7 @@ Showcase project for distributed tracing using jaeger, elasticsearch, k8s.
 - setup ingress for services and jaeger GUI
 - setup installation without java (using docker builder)
 - secure jaeger GUI using reverse proxy (for instance oauth2-proxy) with keycloak?
+- setup kafka streaming ingestion
 
 ## Requirements
 - docker
