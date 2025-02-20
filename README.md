@@ -11,6 +11,7 @@ Showcase project for distributed tracing using jaeger, elasticsearch, k8s.
 ## Requirements
 - docker
 - java21
+- helm
 
 ## How to setup
 1. Install kind in order to be able to create local k8s cluster: https://kind.sigs.k8s.io/docs/user/quick-start/
@@ -35,13 +36,43 @@ Showcase project for distributed tracing using jaeger, elasticsearch, k8s.
    cd ../infrastructure
    kubectl apply -f services.yaml
    ```
-5. Expose cart-service and jaeger gui
+   
+5. Now we need to expose jaeger-search gui and cart-service to send some requests. We can either do it with Ingress or just use kubectl port-forward.
+   #### With ingress
+   Install traefik with helm
+   ```
+   helm install traefik traefik/traefik --namespace traefik --create-namespace
+   kubectl apply -f k8s/traefik-crds.yaml # source https://raw.githubusercontent.com/traefik/traefik/v3.3/docs/content/reference/dynamic-configuration/kubernetes-crd-definition-v1.yml
+   kubectl apply -f k8s/jaeger-route.yaml
+   kubectl apply -f k8s/cart-service-route.yaml
+   ```
+   Add cart-service.local and jaeger.local to /etc/hosts and point them to 127.0.0.1.
+   ```
+   cat /etc/hosts
+   127.0.0.1 localhost jaeger.local cart-service.local
+   ...
+   ```
+   Expose traefik outside of the cluster:
+   ```
+   kubectl port-forward service/traefik 80:80 -n traefik
+   ```
+   Send requests to cart-service and then visit jaeger.
+   ```
+   curl cart-service.local/api/cart
+   curl cart-service.local/api/cart
+   curl cart-service.local/api/cart
+   ```
+   Visit http://jaeger.local 
+
+   #### With port-forward
+   Expose cart-service and jaeger gui (Optional, )
    ```
    kubectl port-forward service/jaeger-query 16686 # this will hang
    kubectl port-forward service/cart-service 8080:80 # this will hang
    ```
-6. Send some requests to cart-service and check jaeger GUI
+   Send some requests to cart-service and check jaeger GUI
    ```
    curl localhost:8080/api/cart # do a couple of these
    ```
    Visit http://localhost:16686
+
