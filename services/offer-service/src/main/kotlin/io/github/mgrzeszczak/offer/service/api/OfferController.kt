@@ -21,10 +21,13 @@ class OfferController(
 
     @GetMapping
     fun getOffers() {
+        Thread.sleep(Duration.ofMillis(ThreadLocalRandom.current().nextLong(30, 50)))
+        if (ThreadLocalRandom.current().nextDouble() < 0.25) {
+            throw IllegalStateException("request failed")
+        }
         redisTemplate.opsForValue().set("test", "123", Duration.ofMinutes(5))
         jdbcTemplate.queryForObject("select version()", String::class.java)
         internalOfferService.internalGetOffers()
-        Thread.sleep(Duration.ofMillis(ThreadLocalRandom.current().nextLong(30, 50)))
     }
 
 
